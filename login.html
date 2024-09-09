@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login/Signup Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .form-container {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            padding: 40px;
+            transition: all 0.6s ease-in-out;
+        }
+        .sign-up-container {
+            left: 0;
+            opacity: 1;
+            z-index: 2;
+        }
+        .sign-in-container {
+            left: 0;
+            opacity: 0;
+            z-index: 1;
+        }
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+        .overlay {
+            background: #3ECBC0;
+            color: white;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        .overlay-panel {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            height: 100%;
+            width: 50%;
+            text-align: center;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 0;
+            z-index: 1;
+        }
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        p {
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-main {
+            background-color: #3ECBC0;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-main:hover {
+            background-color: #35AFA5;
+        }
+        .btn-ghost {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-ghost:hover {
+            background-color: white;
+            color: #3ECBC0;
+        }
+        .social-login {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <h2>Create Account</h2>
+            <div class="social-login">
+                <div class="social-icon">f</div>
+                <div class="social-icon">G+</div>
+                <div class="social-icon">in</div>
+            </div>
+            <p>or use your email for registration:</p>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button class="btn btn-main">SIGN UP</button>
+        </div>
+        <div class="form-container sign-in-container">
+            <h2>Sign In</h2>
+            <div class="social-login">
+                <div class="social-icon">f</div>
+                <div class="social-icon">G+</div>
+                <div class="social-icon">in</div>
+            </div>
+            <p>or use your account:</p>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button class="btn btn-main">SIGN IN</button>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h2>Welcome Back!</h2>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="btn btn-ghost" id="signIn">SIGN IN</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h2>Hello, Friend!</h2>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="btn btn-ghost" id="signUp">SIGN UP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add('right-panel-active');
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove('right-panel-active');
+        });
+
+        document.querySelectorAll('.btn-main').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert(container.classList.contains('right-panel-active') ? 'Sign In functionality would be implemented here.' : 'Sign Up functionality would be implemented here.');
+            });
+        });
+
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                alert('Social login functionality would be implemented here.');
+            });
+        });
+    </script>
+</body>
+</html>

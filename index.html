@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Blog</title>
+  <link rel="stylesheet" href="blog.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+</head>
+
+<body>
+  <header>
+    <div class="logo">IoT Hub</div>
+    <h1>The Connected World</h1>
+    <nav>
+      <ul>
+        <li><a href="">All</a></li>
+        <li><a href="#" data-category="Smart Home">Smart Home</a></li>
+        <li><a href="#" data-category="Connected Cars">Connected Cars</a></li>
+        <li><a href="#" data-category="IoT Security">IoT Security</a></li>
+        <li><a href="#" data-category="Edge Computing">Edge Computing</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="auth-button">SignUp/Login</a>
+  </header>
+  <main>
+    <h2>Latest Blog</h2>
+    <div id="blog-posts"></div>
+  </main>
+  <div id="add-blog-form">
+    <h3>Add New Blog Post</h3>
+    <form id="new-blog-form">
+      <input type="text" id="blog-title" placeholder="Title" required>
+      <input type="text" id="blog-category" placeholder="Category" required>
+      <textarea id="blog-content" placeholder="Content" required></textarea>
+      <input type="file" id="blog-image" accept="image/*" required>
+      <button type="submit">Add Blog Post</button>
+    </form>
+  </div>
+  <footer>
+    <div class="social-icons">
+      <a href="#" class="icon twitter">Twitter</a>
+      <a href="#" class="icon facebook">Facebook</a>
+      <a href="#" class="icon instagram">Instagram</a>
+    </div>
+  </footer>
+  <div id="blog-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <img id="modal-image" src="" alt="">
+      <div class="modal-text">
+        <h3 id="modal-title"></h3>
+        <div id="modal-category"></div>
+        <p id="modal-content"></p>
+      </div>
+    </div>
+  </div>
+  <script src="blog.js"></script>
+</body>
+</html>
